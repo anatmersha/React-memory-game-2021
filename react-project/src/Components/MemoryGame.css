@@ -1,0 +1,63 @@
+
+.historyBtn, .restartBtn{
+text-align: center;
+width: 160px;
+height: 60px;
+font-family: fantasy;
+font-size: 20px;
+border: black solid 10px;
+background-color: gold;
+margin: 30px;
+}
+#card{  
+display: inline-grid;
+grid-template-rows: 320px;
+grid-template-columns: repeat(6, 1fr);
+justify-content: center;
+margin-top: -45px;
+grid-gap: 40px;
+}
+.flipCard{
+    background-color: transparent;
+    text-align: center;
+    width: 245px;
+    height: 330px;
+    /* perspective: 1000px; */
+}
+.flipCardInner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flipCardBack{
+    background: url("https://images.unsplash.com/photo-1610397648930-477b8c7f0943?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE0MnxibzhqUUtUYUUwWXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.flipCardBack,
+.flipCardNumber{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.flipCardNumber{
+    font-size: 50px;
+    background-color: antiquewhite;
+    transform: rotateY(180deg);
+}
+.startBtn{
+    background-color: gold;
+    border: black solid 10px;
+    font-size: 40px;
+    font-family: fantasy;
+    letter-spacing: 5px;
+    padding: 20px;
+    margin-top: 215px;
+}
+.startBtn:hover{
+    opacity: 0.8;
+}
