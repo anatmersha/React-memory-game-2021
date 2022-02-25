@@ -3,21 +3,68 @@ import "./MemoryGame.css";
 
 class MemoryGame extends React.Component{
     state = {
-        cards: [
+        cards: [],
+        hardCards: [ 
             {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_suzie.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_tommy.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_howard_devile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_stu-Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_Didi Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_spike.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lil-Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_reptar.png", clicked: false},
+
             {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_suzie.png", clicked: false},
             {Image: "../RUGRATS-IMGS/rugrats_tommy.png", clicked: false},
-        ], clockCount: 0, startBtn: false, movesCount: 0, btnDisplay: "inline", history: [], 
-        historyDisplay: "none",gameOverMsg: false, bottomBtnsDisplay: "none"}
+            {Image: "../RUGRATS-IMGS/rugrats_howard_devile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_stu-Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_Didi Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_spike.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lil-Pickles.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_reptar.png", clicked: false},
+
+        ], 
+        easyCards: [
+            {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
+
+            {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
+        ],
+        mediumCards: [
+            {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_suzie.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_tommy.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_howard_devile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_stu-Pickles.png", clicked: false},
+
+            {Image: "../RUGRATS-IMGS/rugrats_angelica.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_chucky.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_kimiko.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_lilDevile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_suzie.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_tommy.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_howard_devile.png", clicked: false},
+            {Image: "../RUGRATS-IMGS/rugrats_stu-Pickles.png", clicked: false},
+        ],
+        
+        clockCount: 0, startBtn: false, movesCount: 0, btnDisplay: "inline", history: null, 
+        historyDisplay: "none",gameOverMsg: false, bottomBtnsDisplay: "none", userName: "anonymous", level: "easy"}
         
         clearTime = null;
         LOCAL_SCORES_COUNT = "scores_history";
@@ -25,16 +72,23 @@ class MemoryGame extends React.Component{
         shownCards = [];
         index;
 
+
     componentDidMount(){
         this.shuffleCards();
     }
 
-    shuffleCards = () => {this.state.cards.sort(() => Math.random() - 0.5)}
+    shuffleCards = () => {
+        if(this.state.level === "easy") this.setState({cards: this.state.easyCards})
+        if(this.state.level === "medium") this.setState({cards: this.state.mediumCards})
+        if(this.state.level === "hard") this.setState({cards: this.state.hardCards})
+
+        this.state.cards.sort(() => Math.random() - 0.5)     
+    }
 
     startGame = () => {
             this.startGameCount();
+            this.shuffleCards();
             this.setState({startBtn: true, btnDisplay: "none",bottomBtnsDisplay: "flex"});
-            console.log(this.state.cards);
     }
     
     startGameCount = () => {
@@ -44,10 +98,10 @@ class MemoryGame extends React.Component{
     }
     
     startNewGame = () => {
+        this.setState({clockCount: 0, movesCount: 0, history: null, gameOverMsg: false})
         this.state.cards.forEach(card => card.clicked = false)
-        this.setState({clockCount: 0, movesCount: 0, history: []})
         this.shuffleCards();
-        this.startGame();
+        this.startGame();  
     }
 
     flipCardBack = (card) => {
@@ -104,31 +158,77 @@ class MemoryGame extends React.Component{
         }
     } 
 
-    getWinHistory = () =>{
+    getWinHistory = () => {
         let jsonHistory = localStorage.getItem(this.LOCAL_SCORES_COUNT);
         return jsonHistory ? JSON.parse(jsonHistory) : [];
     }
 
-    appendToHistory = (count, moves) => {
+    appendToHistory = (name, count, moves, level) => {
         let historyArray = this.getWinHistory();
-        historyArray.push({time: count, moves: moves});
+        historyArray.push({name: name, time: count, moves: moves, level: level});
         localStorage.setItem(this.LOCAL_SCORES_COUNT, JSON.stringify(historyArray));
+    }
+    backToMenu = () => {
+        this.setState({startBtn: false, btnDisplay: "inline", bottomBtnsDisplay: "none", clockCount: 0})
+        clearInterval(this.clearTime)
     }
 
     render() {
         return (
             <div>
-                <p className="timer" style={{display: "table-header-group", fontSize: "20px", fontFamily: "fantasy"}}>
+            <div>
+                <div style={{display:this.state.bottomBtnsDisplay, flexDirection: "column", position: "fixed", top: "15.5vh", left: "2vw", alignItems: "center", backgroundColor: "lavenderblush", width: "18vw"}}>
+                <button className="menuBtn" onClick={this.backToMenu}>Back To Menu</button>
+                <button className="restartBtn" 
+                onClick={this.startNewGame}>Restart Game</button>
+
+                <button className="historyBtn" onClick={()=>{
+                  { !this.state.history ? 
+                    this.setState({history: this.getWinHistory()})
+                    : this.setState({history: null})} 
+
+                    console.log(this.state.history);
+                }}>Get History</button>
+
+                <div style={{width: "14vw", height: this.state.history ? "56.5vh" : "", overflowY: this.state.history ? "scroll" : ""}}>
+                {this.state.history ? this.state.history.map((score, i) => {
+                return(
+                <>
+                <p style={{fontSize: "17px"}} key={i}>{i+1}. 
+                {score.name}: {score.time} seconds in {score.moves} moves at level {score.level}</p>
+                </>
+                )}):""}
+                </div>
+
+            </div>
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+                <p className="timer" style={{fontSize: "20px", fontFamily: "fantasy", margin: "1vh", color: "red", letterSpacing: "1px"}}>
                     Time: {this.state.clockCount} seconds</p>
-                <h1 style={{color: "gold",fontSize: "100px", marginTop: "-10px"}}>
+                <h1 style={{color: "deeppink",fontSize: "80px", marginTop: "-2vh"}}>
                     Memory Card Game</h1>
+                    
+                <input style={{display: this.state.btnDisplay}} className="nameInput" placeholder="Insert your name" onChange={(e)=> {
+                    this.setState({userName: e.target.value})
+                }}/>
+
+                <select 
+                className="levels" 
+                style={{display: this.state.btnDisplay}}
+                value={this.state.level} 
+                onChange={(e)=> this.setState({level: e.target.value})}>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
 
                 <button style={{display: this.state.btnDisplay}} className="startBtn" 
                 onClick={this.startGame}>START</button>
 
-                  {this.state.gameOverMsg === true ?      
-                    <h1 style={{paddingBottom: "50px"}}>Congrats, it took you {this.state.clockCount} seconds 
-                    in {this.state.movesCount} moves.</h1>
+                  {this.state.gameOverMsg === true ? 
+                  <div className="gameOverMsgBox">     
+                    <h1 className="gameOverMsg">Congrats {this.state.userName},<br></br> it took you {this.state.clockCount} seconds 
+                    in {this.state.movesCount} moves at level {this.state.level}.</h1>
+                    </div>
                   : "" }
 
                 <div id="card">
@@ -146,7 +246,7 @@ class MemoryGame extends React.Component{
                             clearInterval(this.clearTime)
                             this.clearTime = null;
                             this.setState({gameOverMsg: true})
-                            this.appendToHistory(this.state.clockCount, this.state.movesCount)
+                            this.appendToHistory(this.state.userName ,this.state.clockCount, this.state.movesCount, this.state.level)
                         }
                     }}>
 
@@ -162,21 +262,8 @@ class MemoryGame extends React.Component{
                 }})}
                 </div>
 
-                <div style={{display:this.state.bottomBtnsDisplay, justifyContent:"center",alignItems:"center"}}>
-                <button className="restartBtn" 
-                onClick={this.startNewGame}>Restart Game</button>
-
-
-                <button className="historyBtn" onClick={()=>{
-                    this.setState({history: this.getWinHistory()})
-                    console.log(this.state.history);
-                }}>Get History</button>
-
                 </div>
-                {this.state.history.map((score, i) => {
-                return<p style={{fontSize: "30px"}} key={i}>{i+1}. 
-                Time: {score.time} seconds, Moves: {score.moves}</p>
-                })}
+            </div>
             </div>
         )
     }

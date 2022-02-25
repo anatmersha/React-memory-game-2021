@@ -1,28 +1,28 @@
-
-.historyBtn, .restartBtn{
-text-align: center;
-width: 160px;
-height: 60px;
-font-family: fantasy;
-font-size: 20px;
-border: black solid 10px;
-background-color: gold;
-margin: 30px;
+.historyBtn, .restartBtn, .menuBtn{
+    text-align: center;
+    width: 150px;
+    height: 60px;
+    font-family: fantasy;
+    font-size: 17px;
+    border: black solid 7px;
+    background-color: rgb(206, 10, 115);
+    color: white;
+    margin: 10px;
+    letter-spacing: 1px;
 }
 #card{  
-display: inline-grid;
-grid-template-rows: 320px;
-grid-template-columns: repeat(6, 1fr);
-justify-content: center;
-margin-top: -45px;
-grid-gap: 40px;
+    display: inline-grid;
+    grid-template-rows: 320px;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    margin-top: -4vh;
+    grid-gap: 40px;
 }
 .flipCard{
     background-color: transparent;
     text-align: center;
     width: 245px;
     height: 330px;
-    /* perspective: 1000px; */
 }
 .flipCardInner{
     position: relative;
@@ -31,7 +31,6 @@ grid-gap: 40px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
-
 .flipCardBack{
     background: url("https://images.unsplash.com/photo-1610397648930-477b8c7f0943?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE0MnxibzhqUUtUYUUwWXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60");
     background-size: cover;
@@ -50,14 +49,48 @@ grid-gap: 40px;
     transform: rotateY(180deg);
 }
 .startBtn{
-    background-color: gold;
+    background-color: rgb(255, 106, 185);
     border: black solid 10px;
-    font-size: 40px;
+    font-size: 24px;
+    width: 13vw;
     font-family: fantasy;
     letter-spacing: 5px;
-    padding: 20px;
-    margin-top: 215px;
+    padding: 15px;
+    margin-top: 1vh;
 }
-.startBtn:hover{
+.startBtn:hover, .historyBtn:hover, .menuBtn:hover, .restartBtn:hover{
     opacity: 0.8;
+}
+.nameInput{
+    height: 6vh;
+    border: black solid 10px;
+    font-size: 25px;
+    width: 11.8vw;
+    font-family: fantasy;
+    margin-top: 20vh;
+}
+.gameOverMsgBox{
+    position: fixed;
+    z-index: 9;
+    background-color: lavenderblush;
+    height: 30vh;
+    width: 57.3vw;
+    box-shadow: rgb(250, 211, 224) 0px 1px 5px 5px;
+}
+.gameOverMsg{
+    line-height: 2.5;
+    margin-top: 4vh;
+    font-family: fantasy;
+    letter-spacing: 5px;
+    font-size: 35px;
+    color: deeppink;
+}
+.levels{
+    height: 8.5vh;
+    border: black solid 10px;
+    font-size: 25px;
+    width: 13vw;
+    font-family: fantasy;
+    margin-top: 1vh;
+    z-index: 9;
 }
