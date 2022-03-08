@@ -138,3 +138,185 @@
     z-index: 9;
     margin: 10px;
 }
+.controlBtns{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 15.8vh;
+    left: 0.5vw;
+    align-items: center;
+    background-color: lavenderblush;
+    width: 12vw;
+}
+.timer{
+    font-size: 20px;
+    font-family: fantasy;
+    margin: 1vh;
+    color: red;
+    letter-spacing: 1px;
+}
+.mainHeader{
+    color: deeppink;
+    font-size: 80px;
+    margin-top: -2vh;
+    margin-bottom: 0;
+}
+.mainImg{
+    width: 50vw;
+    height: 35vh;
+}
+.showHistory{
+    width: 12vw;
+    text-align: left;
+    overflow-y: scroll;
+}
+.historyInfo{
+    font-size: 17px;
+}
+.mainBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.startMenu{
+    display: flex;
+    margin-top: 10vh;
+}
+
+@media screen and (max-width: 768px){
+    .mainHeader{
+        font-size: 40px;
+        margin-top: 0;
+    }
+    .startBtn, .levels, .nameInput{
+        border: black solid 8px;
+        font-size: 18px;
+        margin: 5px;
+        height: 8vh;
+    }
+    .nameInput{
+        width: 17vw;
+        height: 6vh;
+    }
+    .timer{
+        font-size: 16px;
+    }
+    .controlBtns{
+        position: static;
+        width: 130px;
+        margin-top: 1vh;
+    }
+    .flipCard_easy, .cardImg_easy{
+        width: 175px;
+        height: 236px;
+    }
+    .card_easy{
+        grid-template-rows: 237px;
+        grid-gap: 8px;
+    }
+    .historyBtn, .restartBtn, .menuBtn{
+        width: 130px;
+        height: 50px;
+        font-size: 15px;
+        margin: 5px;
+    }
+    .showHistory{
+        width: 130px;
+    }
+    .historyInfo {
+        font-size: 12px;
+    }
+    .card_medium{
+        grid-template-columns: repeat(4, 1fr)
+    }
+    .flipCard_medium, .cardImg_medium{
+        width: 150px;
+        height: 202px;
+    }
+    .card_medium{
+        grid-template-rows: 203px;
+        grid-gap: 8px;
+        margin-left: 0;
+    }
+    .flipCard_hard, .cardImg_hard{
+        width: 115px;
+        height: 155px;
+    }
+    .card_hard{
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 154px;
+        grid-gap: 5px;
+    }
+}
+@media screen and (max-width: 425px){
+    .mainHeader{
+        font-size: 25px;
+        margin-top: -10px;
+    }
+    .mainImg {
+        width: 60vw;
+        height: 24vh;
+        margin-top: 6vh;
+    }
+    .startMenu{
+        flex-direction: column;
+    }
+    .nameInput{
+        height: 2vh;
+        border: black solid 6px;
+        font-size: 15px;
+        width: 25vw; 
+        padding: 10px;
+    }
+    .startBtn, .levels{
+        border: black solid 6px;
+        font-size: 15px;
+        width: 32.5vw;
+        padding: 5px;
+        height: 5.5vh;
+    }
+    .timer{
+        font-size: 12px;
+    }
+    .flipCard_easy, .cardImg_easy{
+        width: 98px;
+        height: 132px;
+    }
+    .card_easy{
+        grid-template-rows: 132px;
+        grid-gap: 5px;
+    }
+    .controlBtns{
+        position: static;
+    }
+    .historyBtn, .restartBtn, .menuBtn {
+        width: 100px;
+        height: 35px;
+        font-size: 10px;
+        border: black solid 5px;
+        margin: 5px;
+    }
+    .historyInfo {
+        font-size: 10px;
+    }
+    .card_medium{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 135px;
+        grid-gap: 5px;
+        margin-left: 0;
+    }
+    .flipCard_medium, .cardImg_medium{
+        width: 100px;
+        height: 135px;
+    }
+    .flipCard_hard, .cardImg_hard{
+        width: 75px;
+        height: 101px;
+    }
+    .card_hard{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 100px;
+        grid-gap: 5px;
+    }
+}

@@ -177,38 +177,15 @@ class MemoryGame extends React.Component{
         return (
             <div>
             <div>
-                <div style={{display:this.state.bottomBtnsDisplay, flexDirection: "column", position: "fixed", top: "15.8vh", left: "0.5vw", alignItems: "center", backgroundColor: "lavenderblush", width: "12vw"}}>
-                <button className="menuBtn" onClick={this.backToMenu}>Back To Menu</button>
-                <button className="restartBtn" 
-                onClick={this.startNewGame}>Restart Game</button>
-
-                <button className="historyBtn" onClick={()=>{
-                  { !this.state.history ? 
-                    this.setState({history: this.getWinHistory()})
-                    : this.setState({history: null})} 
-
-                }}>Get History</button>
-
-                <div style={{width: "12vw", textAlign: "left", height: this.state.history ? "56.5vh" : "", overflowY: this.state.history ? "scroll" : ""}}>
-                {this.state.history ? this.state.history.map((score, i) => {
-                return(
-                <>
-                <p style={{fontSize: "17px"}} key={i}>{i+1}. 
-                {score.name}: {score.time} seconds <br/> in {score.moves} moves at level {score.level}</p>
-                </>
-                )}):""}
-                </div>
-
-            </div>
-            <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
-                <p className="timer" style={{fontSize: "20px", fontFamily: "fantasy", margin: "1vh", color: "red", letterSpacing: "1px"}}>
+                <div className="mainBlock">
+                <p className="timer">
                     Time: {this.state.clockCount} seconds</p>
-                <h1 style={{color: "deeppink",fontSize: "80px", marginTop: "-2vh", marginBottom: "0"}}>
+                <h1 className="mainHeader">
                     Memory Card Game</h1>
 
-                <img style={{display: this.state.btnDisplay, width: "50vw", height: "35vh"}} src="../RUGRATS-IMGS/pixel-rugrats.png" alt=""/>
+                <img className="mainImg" style={{display: this.state.btnDisplay}} src="../RUGRATS-IMGS/pixel-rugrats.png" alt=""/>
                     
-                <div style={{display: "flex", marginTop: "10vh"}}>
+                <div className="startMenu">
                 <input style={{display: this.state.btnDisplay}} className="nameInput" placeholder="Insert your name" onChange={(e)=> {
                     this.setState({userName: e.target.value})
                 }}/>
@@ -270,8 +247,33 @@ class MemoryGame extends React.Component{
                     )
                 }})}
                 </div>
+               
+
+                <div className="controlBtns" style={{display:this.state.bottomBtnsDisplay}}>
+                <button className="menuBtn" onClick={this.backToMenu}>Back To Menu</button>
+                <button className="restartBtn" 
+                onClick={this.startNewGame}>Restart Game</button>
+
+                <button className="historyBtn" onClick={()=>{
+                  { !this.state.history ? 
+                    this.setState({history: this.getWinHistory()})
+                    : this.setState({history: null})} 
+
+                }}>Get History</button>
+
+                <div className="showHistory" style={{height: this.state.history ? "27vh" : "", overflowY: this.state.history ? "scroll" : ""}}>
+                {this.state.history ? this.state.history.map((score, i) => {
+                return(
+                <>
+                <p className="historyInfo" key={i}>{i+1}. 
+                {score.name}: {score.time} seconds <br/> in {score.moves} moves at level {score.level}</p>
+                </>
+                )}):""}
+                </div>
 
                 </div>
+                 </div>
+
             </div>
             </div>
         )
