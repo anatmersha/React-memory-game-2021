@@ -72,7 +72,6 @@ class MemoryGame extends React.Component{
         shownCards = [];
         index;
 
-
     componentDidMount(){
         this.shuffleCards();
     }
@@ -168,16 +167,17 @@ class MemoryGame extends React.Component{
         historyArray.push({name: name, time: count, moves: moves, level: level});
         localStorage.setItem(this.LOCAL_SCORES_COUNT, JSON.stringify(historyArray));
     }
+
     backToMenu = () => {
-        this.setState({startBtn: false, btnDisplay: "inline", bottomBtnsDisplay: "none", clockCount: 0})
+        this.setState({startBtn: false, btnDisplay: "inline", bottomBtnsDisplay: "none", clockCount: 0, history: null})
         clearInterval(this.clearTime)
-    }
+    } 
 
     render() {
         return (
             <div>
             <div>
-                <div style={{display:this.state.bottomBtnsDisplay, flexDirection: "column", position: "fixed", top: "15.5vh", left: "2vw", alignItems: "center", backgroundColor: "lavenderblush", width: "18vw"}}>
+                <div style={{display:this.state.bottomBtnsDisplay, flexDirection: "column", position: "fixed", top: "15.8vh", left: "0.5vw", alignItems: "center", backgroundColor: "lavenderblush", width: "12vw"}}>
                 <button className="menuBtn" onClick={this.backToMenu}>Back To Menu</button>
                 <button className="restartBtn" 
                 onClick={this.startNewGame}>Restart Game</button>
@@ -187,15 +187,14 @@ class MemoryGame extends React.Component{
                     this.setState({history: this.getWinHistory()})
                     : this.setState({history: null})} 
 
-                    console.log(this.state.history);
                 }}>Get History</button>
 
-                <div style={{width: "14vw", height: this.state.history ? "56.5vh" : "", overflowY: this.state.history ? "scroll" : ""}}>
+                <div style={{width: "12vw", textAlign: "left", height: this.state.history ? "56.5vh" : "", overflowY: this.state.history ? "scroll" : ""}}>
                 {this.state.history ? this.state.history.map((score, i) => {
                 return(
                 <>
                 <p style={{fontSize: "17px"}} key={i}>{i+1}. 
-                {score.name}: {score.time} seconds in {score.moves} moves at level {score.level}</p>
+                {score.name}: {score.time} seconds <br/> in {score.moves} moves at level {score.level}</p>
                 </>
                 )}):""}
                 </div>
@@ -204,9 +203,12 @@ class MemoryGame extends React.Component{
             <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
                 <p className="timer" style={{fontSize: "20px", fontFamily: "fantasy", margin: "1vh", color: "red", letterSpacing: "1px"}}>
                     Time: {this.state.clockCount} seconds</p>
-                <h1 style={{color: "deeppink",fontSize: "80px", marginTop: "-2vh"}}>
+                <h1 style={{color: "deeppink",fontSize: "80px", marginTop: "-2vh", marginBottom: "0"}}>
                     Memory Card Game</h1>
+
+                <img style={{display: this.state.btnDisplay, width: "50vw", height: "35vh"}} src="../RUGRATS-IMGS/pixel-rugrats.png" alt=""/>
                     
+                <div style={{display: "flex", marginTop: "10vh"}}>
                 <input style={{display: this.state.btnDisplay}} className="nameInput" placeholder="Insert your name" onChange={(e)=> {
                     this.setState({userName: e.target.value})
                 }}/>
@@ -223,6 +225,7 @@ class MemoryGame extends React.Component{
 
                 <button style={{display: this.state.btnDisplay}} className="startBtn" 
                 onClick={this.startGame}>START</button>
+                </div>
 
                   {this.state.gameOverMsg === true ? 
                   <div className="gameOverMsgBox">     
@@ -231,12 +234,15 @@ class MemoryGame extends React.Component{
                     </div>
                   : "" }
 
-                <div id="card">
+                <div className={this.state.level === "easy" ? "card_easy" : (this.state.level === "medium" ? "card_medium" : "card_hard")}>
 
                 {this.state.cards.map((card, i) => {
                      if(this.state.startBtn === true) {
                 return(
-                    <div key={i} className="flipCard"  onClick={()=> {    
+                    <div key={i} 
+                    className={this.state.level === "easy" ? "flipCard_easy" : (this.state.level === "medium" ? "flipCard_medium" : "flipCard_hard")}
+
+                        onClick={()=> {    
                         const temp = this.state.cards;
                         temp[i].clicked = true;
                         this.setState({cards: temp});  
@@ -254,7 +260,10 @@ class MemoryGame extends React.Component{
                     style={{transform: card.clicked ? "rotateY(180deg)" : "none"}}>
                     <div className="flipCardBack"></div>
                     <div className="flipCardNumber">
-                        <img style={{width:"245px", height:"330px"}} src={card.Image}></img>
+                        <img 
+                        className={this.state.level === "easy" ? "cardImg_easy" : (this.state.level === "medium" ? "cardImg_medium" : "cardImg_hard")}
+                        src={card.Image}>
+                        </img>
                     </div>     
                     </div>                
                     </div>

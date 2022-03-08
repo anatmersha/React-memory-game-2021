@@ -10,19 +10,60 @@
     margin: 10px;
     letter-spacing: 1px;
 }
-#card{  
+.card_easy{  
     display: inline-grid;
-    grid-template-rows: 320px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 288px;
     justify-content: center;
-    margin-top: -4vh;
-    grid-gap: 40px;
+    margin-top: -8vh;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
 }
-.flipCard{
+.card_medium{  
+    display: inline-grid;
+    grid-template-rows: 243px;
+    justify-content: center;
+    margin-top: -8vh;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 12px;
+    margin-left: 6vw;
+}
+.card_hard{  
+    display: inline-grid;
+    grid-template-rows: 223px;
+    justify-content: center;
+    margin-top: -8vh;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 10px;
+}
+.flipCard_easy{
     background-color: transparent;
     text-align: center;
-    width: 245px;
-    height: 330px;
+    width: 215px;
+    height: 290px;
+}
+.flipCard_medium{
+    background-color: transparent;
+    text-align: center;
+    width: 180px;
+    height: 243px;
+}
+.flipCard_hard{
+    background-color: transparent;
+    text-align: center;
+    width: 165px;
+    height: 223px;
+}
+.cardImg_easy{
+    width: 215px;
+    height: 290px;
+}
+.cardImg_medium{
+    width: 180px;
+    height: 243px;
+}
+.cardImg_hard{
+    width: 165px;
+    height: 223px;
 }
 .flipCardInner{
     position: relative;
@@ -56,18 +97,20 @@
     font-family: fantasy;
     letter-spacing: 5px;
     padding: 15px;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
+    margin: 10px;
 }
 .startBtn:hover, .historyBtn:hover, .menuBtn:hover, .restartBtn:hover{
     opacity: 0.8;
 }
 .nameInput{
-    height: 6vh;
+    height: 6.1vh;
     border: black solid 10px;
     font-size: 25px;
     width: 11.8vw;
     font-family: fantasy;
-    margin-top: 20vh;
+    /* margin-top: 20vh; */
+    margin: 10px;
 }
 .gameOverMsgBox{
     position: fixed;
@@ -91,6 +134,7 @@
     font-size: 25px;
     width: 13vw;
     font-family: fantasy;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
     z-index: 9;
+    margin: 10px;
 }
