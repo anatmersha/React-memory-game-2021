@@ -248,6 +248,14 @@
         grid-template-rows: 154px;
         grid-gap: 5px;
     }
+    .gameOverMsgBox{
+        height: 32vh;
+        top: 24vh
+    }
+    .gameOverMsg{
+        font-size: 27px;
+        letter-spacing: 0;
+    }
 }
 @media screen and (max-width: 425px){
     .mainHeader{
@@ -318,5 +326,13 @@
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 100px;
         grid-gap: 5px;
+    }
+    .gameOverMsg{
+        font-size: 19px;
+        letter-spacing: 0;
+    }
+    .gameOverMsgBox{
+        height: 24vh;
+        top: 12vh;
     }
 }
