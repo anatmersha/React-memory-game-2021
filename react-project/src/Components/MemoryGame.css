@@ -332,7 +332,7 @@
         letter-spacing: 0;
     }
     .gameOverMsgBox{
-        height: 24vh;
-        top: 12vh;
+        height: 28vh;
+        top: 10vh;
     }
 }
