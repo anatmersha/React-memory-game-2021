@@ -274,13 +274,13 @@
         height: 2vh;
         border: black solid 6px;
         font-size: 15px;
-        width: 25vw; 
+        width: 28vw; 
         padding: 10px;
     }
     .startBtn, .levels{
         border: black solid 6px;
         font-size: 15px;
-        width: 32.5vw;
+        width: 35.5vw;
         padding: 5px;
         height: 5.5vh;
     }

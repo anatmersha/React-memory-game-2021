@@ -97,7 +97,8 @@ class MemoryGame extends React.Component{
     }
     
     startNewGame = () => {
-        this.setState({clockCount: 0, movesCount: 0, history: null, gameOverMsg: false})
+        this.setState({startBtn: true, clockCount: 0, movesCount: 0, history: null, gameOverMsg: false})
+        // this.shownCards = [];
         this.state.cards.forEach(card => card.clicked = false)
         this.shuffleCards();
         this.startGame();  
