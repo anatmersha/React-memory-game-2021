@@ -98,7 +98,8 @@ class MemoryGame extends React.Component{
     
     startNewGame = () => {
         this.setState({startBtn: true, clockCount: 0, movesCount: 0, history: null, gameOverMsg: false})
-        // this.shownCards = [];
+        this.shownCards = [];
+        this.choosenCards = [];
         this.state.cards.forEach(card => card.clicked = false)
         this.shuffleCards();
         this.startGame();  
@@ -130,7 +131,7 @@ class MemoryGame extends React.Component{
     }
 
     isGameOver = () => {
-
+console.log(this.state.cards, this.shownCards);
         if(this.state.cards.length === this.shownCards.length) {
             return true
         }
@@ -170,7 +171,7 @@ class MemoryGame extends React.Component{
     }
 
     backToMenu = () => {
-        this.setState({startBtn: false, btnDisplay: "inline", bottomBtnsDisplay: "none", clockCount: 0, history: null})
+        this.setState({startBtn: false, btnDisplay: "inline", bottomBtnsDisplay: "none", clockCount: 0, history: null, movesCount: 0, gameOverMsg: false})
         clearInterval(this.clearTime)
     } 
 
